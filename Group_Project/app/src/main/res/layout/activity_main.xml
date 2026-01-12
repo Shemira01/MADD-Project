@@ -1,19 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<!--
+    XML declaration to tell Android this is an XML file encoded using UTF-8.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+    <!--
+        Decided to go with linear layout as the root layout of the screenX.
+    -->
 
+    <!-- Title for the app-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
+    <!--
+        Displays the app title and the text comes from strings.xml
+        New learned information is that sp is used for text size to support accessibility scaling.
+    -->
+
+    <!-- Label for weight -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/lbl_weight"
+        android:textColor="@color/black" />
+    <!--
+        the label is used to describe where the weight input is
+    -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- edittext for weight -->
+    <EditText
+        android:id="@+id/etWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_weight"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp" />
+    <!--
+        Input field for weight in kilograms.
+       New information learned is that numberDecimal restricts input to numeric values with decimals.
+    -->
+
+    <!-- Label for height -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_height"
+        android:textColor="@color/black" />
+    <!--
+        the label is describing the height input field.
+    -->
+
+    <!-- input for height-->
+    <EditText
+        android:id="@+id/etHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_height"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp" />
+    <!--
+        Input field for height in meters.
+
+    -->
+
+    <!-- button to compute results -->
+    <Button
+        android:id="@+id/btnCompute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_compute"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/bmi_normal"
+        android:layout_marginBottom="8dp" />
+    <!--
+        Button that triggers BMI computation.
+
+         the text is referenced from strings.xml. as requested
+    -->
+
+    <!-- button to reset -->
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_reset"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/bmi_overweight"
+        android:layout_marginBottom="16dp" />
+    <!--
+        this button clears inputs and resets the results
+    -->
+
+    <!-- display results -->
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_result"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/black" />
+    <!--
+        The main function is to display the BMI result and category.
+    -->
+
+</LinearLayout>
