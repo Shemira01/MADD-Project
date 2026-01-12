@@ -27,22 +27,48 @@ public class MainActivity extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         tvResult = findViewById(R.id.tvResult);
 
-        // 🔹 INPUT HANDLER LOGIC
-        btnCompute.setOnClickListener(v -> {
+      
+btnCompute.setOnClickListener(v -> {
 
-            String weightStr = etWeight.getText().toString().trim();
-            String heightStr = etHeight.getText().toString().trim();
+    // 1. Capture inputs 
+    String weightStr = etWeight.getText().toString().trim();
+    String heightStr = etHeight.getText().toString().trim();
 
-            if (weightStr.isEmpty() || heightStr.isEmpty()) {
-                tvResult.setText("Please enter both weight and height");
-                return;
-            }
+    // 2. VALIDATION 
+    
+    // Check Empty Weight
+    if (weightStr.isEmpty()) {
+        etWeight.setError("Weight is required!"); // specific error on the field
+        etWeight.requestFocus(); 
+        return;
+    }
 
-            double weight = Double.parseDouble(weightStr);
-            double height = Double.parseDouble(heightStr);
+    // Check Empty Height
+    if (heightStr.isEmpty()) {
+        etHeight.setError("Height is required!");
+        etHeight.requestFocus();
+        return;
+    }
 
-            // Values ready for BMI calculation
-        });
+    // Check Numeric Validity & Zero values
+    try {
+        double weight = Double.parseDouble(weightStr);
+        double height = Double.parseDouble(heightStr);
+
+        if (weight <= 0 || height <= 0) {
+            // Toast or specific error for logic
+            tvResult.setText("Error: Values must be greater than 0"); 
+            return;
+        }
+
+        // If all validations pass
+        tvResult.setText("Validation Passed. Ready to calculate!");
+
+    } catch (NumberFormatException e) {
+        // Prevents crash if input is just "." or invalid chars
+        tvResult.setText("Error: Invalid numeric input");
+    }
+});
 
         // 🔹 Reset button
         btnReset.setOnClickListener(v -> {
